@@ -108,6 +108,8 @@
     <div id="overview">
         <div id="bubbleArea" align="center" />
     </div>
+    <div id="gramsArea" align="center" />
+    <div id="percentageArea" align="center" />
     <div id="breakdown" />
     <div id="about" />
 
@@ -161,7 +163,9 @@
                     return color(i);
                 })
                 .on("click", function (d) {
+                    document.getElementById("gramsArea").innerHTML = "";
                     renderNutritionGraph(d.data);
+                    renderPercentageDailyValues(d.data);
                 });
 
             node.append("text")
@@ -205,10 +209,11 @@
             dataGramsArray.push({ "measure": "Protein", "amount": parseFloat(data["Protein"]) });
 
             data = dataGramsArray;
+
             var margin = { top: 40, right: 20, bottom: 30, left: 40 },
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
-                
+
             var x = d3.scaleBand()
                 .range([0, width], .1);
 
@@ -226,7 +231,7 @@
                     return "<strong>Amount:</strong> <span style='color:red'>" + d.amount + "g</span>";
                 })
 
-            var svg = d3.select("#overview").append("svg")
+            var svg = d3.select("#gramsArea").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
@@ -249,7 +254,7 @@
                 .attr("y", 6)
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
-                .text("Frequency");
+                .text("Nutrient Amounts");
 
             svg.selectAll(".bar")
                 .data(data)
@@ -267,74 +272,88 @@
 
         renderPercentageDailyValues = function (data) {
 
-            var margin = { top: 40, right: 20, bottom: 30, left: 40 },
+            var percentagesArray = [];
+            percentagesArray.push({ "measure": "Total Fat (%)", "amount": parseFloat(data["Total Fat (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Saturated Fat (%)", "amount": parseFloat(data["Saturated Fat (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Cholesterol (%)", "amount": parseFloat(data["Cholesterol (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Sodium (%)", "amount": parseFloat(data["Sodium (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Carbohydrates (%)", "amount": parseFloat(data["Carbohydrates (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Dietary Fiber (%)", "amount": parseFloat(data["Dietary Fiber (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Vitamin A (%)", "amount": parseFloat(data["Vitamin A (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Vitamin C (%)", "amount": parseFloat(data["Vitamin C (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Calcium (%)", "amount": parseFloat(data["Calcium (% Daily Value)"])/100 });
+            percentagesArray.push({ "measure": "Iron (%)", "amount": parseFloat(data["Iron (% Daily Value)"])/100 });
+
+            data = percentagesArray;
+
+            var margin = { top: 40, right: 20, bottom: 80, left: 40 },
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
 
             var formatPercent = d3.format(".0%");
 
-            var x = d3.scale.ordinal()
-                .rangeRoundBands([0, width], .1);
+            var x = d3.scaleBand()
+                .range([0, width], .1);
 
-            var y = d3.scale.linear()
-                .range([height, 0]);
+            var y = d3.scaleLinear()
+                .rangeRound([height, 0]);
 
-            var xAxis = d3.svg.axis()
-                .scale(x)
-                .orient("bottom");
+            var xAxis = d3.axisBottom(x);
 
-            var yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left")
-                .tickFormat(formatPercent);
+            var yAxis = d3.axisLeft(y)
+            .tickFormat(formatPercent)
+    .ticks(8);
 
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
                 .offset([-10, 0])
                 .html(function (d) {
-                    return "<strong>Frequency:</strong> <span style='color:red'>" + d.frequency + "</span>";
+                    return "<strong>Daily Percentage:</strong> <span style='color:red'>" + d.amount * 100 + "%</span>";
                 })
 
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select("#gramsArea").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             svg.call(tip);
+            x.domain(data.map(function (d) { return d.measure; }));
+            y.domain([0, d3.max(data, function (d) { return d.amount; })]);
 
-            d3.tsv("data.tsv", type, function (error, data) {
-                x.domain(data.map(function (d) { return d.letter; }));
-                y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", function (d) {
+                    return "rotate(-65)"
+                });
 
-                svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
 
-                svg.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis)
-                    .append("text")
-                    .attr("transform", "rotate(-90)")
-                    .attr("y", 6)
-                    .attr("dy", ".71em")
-                    .style("text-anchor", "end")
-                    .text("Frequency");
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text("Nutrient Amounts");
 
-                svg.selectAll(".bar")
-                    .data(data)
-                    .enter().append("rect")
-                    .attr("class", "bar")
-                    .attr("x", function (d) { return x(d.letter); })
-                    .attr("width", x.rangeBand())
-                    .attr("y", function (d) { return y(d.frequency); })
-                    .attr("height", function (d) { return height - y(d.frequency); })
-                    .on('mouseover', tip.show)
-                    .on('mouseout', tip.hide)
-
-            });
-
+            svg.selectAll(".bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d) { return x(d.measure); })
+                .attr("width", x.bandwidth())
+                .attr("y", function (d) { return y(d.amount); })
+                .attr("height", function (d) { return height - y(d.amount); })
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
         }
 
     </script>

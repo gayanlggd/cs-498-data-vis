@@ -7,9 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Grayscale - Start Bootstrap Theme</title>
-
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -91,7 +88,6 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -101,14 +97,17 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="#introduction">Introduction</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+            <a class="nav-link js-scroll-trigger" href="#overview">Overview</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+            <a class="nav-link js-scroll-trigger" id="breakdownSection" href="#breakdown">Breakdown</a>
           </li>
+          <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#signup">About</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -118,103 +117,124 @@
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start
-          Bootstrap.</h2>
-        <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
+          <h1 class="mx-auto my-0 text-uppercase">McDonalds</h1>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5">An insight into the amounts of nutrients, percentage daily intake and calories 
+            of different menu options at the world's most famous fast food chain.</h2>
       </div>
     </div>
   </header>
 
   <!-- About Section -->
-  <section id="about" class="about-section text-center">
+  <section id="introduction" class="about-section text-center">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
-          <p class="text-white-50">Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right
-            now, simply download the template on
-            <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open
-            source, and you can use it for any purpose, personal or commercial.</p>
+          <h2 class="text-white mb-4">Introduction</h2>
+          <p class="text-white-50 text-lg-left">McDonalds is argubly the world's most famous restaurant chain and the fast food chain.
+            According to Wikipedia, McDonald's is the world's largest restaurant chain by revenue, serving over 69 million 
+            customers daily in over 100 countries across 37,855 outlets as of 2018.
+            But what exactly McDonalds is selling to its customers ?, is it healthy ?, does it surpass the recommended daily intake
+            of calories and different nutrients? These questions have been popular among the general public for the last couple of decades
+            in an era where people are fact finding about obesity and remedies. 
+          <br/>
+          <br/>
+            This visualization study looks to highlight a few important facts and answer a few important questions.
+          <br/>
+          <br/>
+            1) What would be a better comparison between the caloric values of different menu items at McDonalds ?<br/>
+            2) What are the nutrients that each menu item consists of ?<br/>
+            3) What is the percentage of daily recommended intake of each selected menu item ?
+          <br/>
+          <br/>
+          <br/>
+            <strong>Dataset</strong>
+          <br/>
+          The dataset used for this analysis can be found in <a target="_" href="https://www.kaggle.com/mcdonalds/nutrition-facts">Kaggle</a>
+          The original dataset consists of about 260 McDonalds menu items. For simplicity of the visualization, the beverages are not considered
+          for the analysis. The dataset has some valuable information such as the amount of calories of each food item, the amount of nutirients of each type,
+          along with the percentage values of the daily recommended intake of each nutrient.
+          </p>
         </div>
       </div>
       <!--img src="img/ipad.png" class="img-fluid" alt=""-->
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="projects-section bg-light">
+  <!-- Overview Section -->
+  <section id="overview" class="projects-section bg-light">
     <div class="container">
-
+        <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">Calories of food items</h4>
+                <p class="mb-0 text-white-50">
+                    Knowing the amount of calorie values helps answering many questions such as does ordered grilled chicken instead of crispy increase a sandwich's nutritional value? What about ordering egg whites instead of whole eggs? What is the least number of items could you order from the menu to meet one day's nutritional requirements?
+                </p>
+                <br>
+                <p class="mb-0 text-white-50">
+                  This is an interactive figure, tooltip on each food item shows the name of the food item and the amount of calories it contains. Click the any bubble to observe detailed drilldown view of the it.
+                  </p><hr class="d-none d-lg-block mb-0 ml-0">
+                <p></p>
+      
+              </div>
+          </div>
+        </div>
       <!-- Featured Project Row -->
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-        <div id="bubbleArea" class="col-xl-8 col-lg-7">
-          <strong>Overview</strong>
-        </div>
-        <div  class="col-xl- col-lg-5">
-          <!--div class="featured-text text-center text-lg-left">
-            <h4>Shoreline</h4>
-            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
-          </div-->
-        </div>
+        <div id="bubbleArea" class="col-xl-8 col-lg-7"/>
       </div>
-
-      <!-- Project One Row -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-        <div class="col-lg-6">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 text-center text-lg-left">
-                <h4 class="text-white">Misty</h4>
-                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else,
-                  along with a description.</p>
-                <hr class="d-none d-lg-block mb-0 ml-0">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="gramsArea" class="col-lg-6">
-            <!--img class="img-fluid" src="img/demo-image-01.jpg" alt=""-->
-          </div>
-      </div>
-
-      <!-- Project Two Row -->
-      <div class="row justify-content-center no-gutters">
-        <div class="col-lg-6 order-lg-first">
-          <div class="bg-black text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 text-center text-lg-left">
-                <h4 class="text-white">Mountains</h4>
-                <p class="mb-0 text-white-50">Another example of a project with its respective description. These
-                  sections work well responsively as well, try this theme on a small screen!</p>
-                <hr class="d-none d-lg-block mb-0 mr-0">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="percentageArea" class="col-lg-6">
-          <!--img class="img-fluid" src="img/demo-image-02.jpg" alt=""-->
-        </div>
-      </div>
-
     </div>
   </section>
+
+  <!-- Breakdown Section -->
+  <section id="breakdown" class="projects-section bg-light">
+      <div class="container">
+ 
+        <!-- Project One Row -->
+        <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+          <div class="col-lg-6">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 text-center text-lg-left">
+                  <h4 class="text-white">Nutrients</h4>
+                  <p class="mb-0 text-white-50">Amount of nutrients in grams of selected food item</p>
+                  <hr class="d-none d-lg-block mb-0 ml-0">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="gramsArea" class="col-lg-6">
+              <!--img class="img-fluid" src="img/demo-image-01.jpg" alt=""-->
+            </div>
+        </div>
+  
+        <!-- Project Two Row -->
+        <div class="row justify-content-center no-gutters">
+          <div class="col-lg-6 order-lg-first">
+            <div class="bg-black text-center h-100 project">
+              <div class="d-flex h-100">
+                <div class="project-text w-100 text-center text-lg-left">
+                  <h4 class="text-white">Percentage of daily intake</h4>
+                  <p class="mb-0 text-white-50">Amount of nutrients as a percentage of the daily recommended intake</p>
+                  <hr class="d-none d-lg-block mb-0 mr-0">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="percentageArea" class="col-lg-6">
+            <!--img class="img-fluid" src="img/demo-image-02.jpg" alt=""-->
+          </div>
+        </div>
+  
+      </div>
+    </section>
 
   <!-- Signup Section -->
   <section id="signup" class="signup-section">
     <div class="container">
       <div class="row">
         <div class="col-md-10 col-lg-8 mx-auto text-center">
-
-          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-
-          <form class="form-inline d-flex">
-            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail"
-              placeholder="Enter email address...">
-            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
-          </form>
-
+          <h2 class="text-white mb-5">Visualization techniques used</h2>
         </div>
       </div>
     </div>
@@ -244,7 +264,6 @@
               <h4 class="text-uppercase m-0">Email</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a href="#">hello@yourdomain.com</a>
               </div>
             </div>
           </div>
@@ -261,26 +280,14 @@
           </div>
         </div>
       </div>
-
-      <div class="social d-flex justify-content-center">
-        <a href="#" class="mx-2">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" class="mx-2">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="mx-2">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
     <div class="container">
-      Copyright &copy; Your Website 2019
+        <strong>Gayan Liyanagamage</strong><br/>
+        <strong>gayandl2@illinois.edu</strong>
     </div>
   </footer>
 
@@ -300,7 +307,10 @@
       var dataset = {};
       dataset.children = data;
       var diameter = 800;
-      var color = d3.scaleOrdinal(d3.schemeCategory20);
+      var color = d3.scaleOrdinal(d3.schemeCategory20);   
+      console.log(data);   
+      renderNutritionGraph(data[0]);
+      renderPercentageDailyValues(data[0]);
 
       var tip = d3.tip()
         .attr('class', 'd3-tip')
@@ -350,6 +360,7 @@
           document.getElementById("percentageArea").innerHTML = "";
           renderNutritionGraph(d.data);
           renderPercentageDailyValues(d.data);
+          document.getElementById("breakdownSection").click();
         });
 
       node.append("text")
@@ -394,9 +405,9 @@
 
       data = dataGramsArray;
 
-      var margin = { top: 40, right: 20, bottom: 30, left: 80 },
+      var margin = { top: 40, right: 20, bottom: 100, left: 80 },
         width = 720 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 375 - margin.top - margin.bottom;
 
       var x = d3.scaleBand()
         .range([0, width], .1);
@@ -428,7 +439,14 @@
       svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", function (d) {
+          return "rotate(-65)"
+        });
 
       svg.append("g")
         .attr("class", "y axis")
@@ -440,10 +458,10 @@
         .style("text-anchor", "middle")
         .text("Nutrient Amounts");
 
-      svg.selectAll(".bar")
+      svg.selectAll(".bar1")
         .data(data)
         .enter().append("rect")
-        .attr("class", "bar")
+        .attr("class", "bar1")
         .attr("x", function (d) { return x(d.measure); })
         .attr("width", x.bandwidth() * 0.75)
         .attr("y", function (d) { return y(d.amount); })
@@ -472,7 +490,7 @@
 
       var margin = { top: 40, right: 20, bottom: 100, left: 80 },
         width = 720 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 375 - margin.top - margin.bottom;
 
       var formatPercent = d3.format(".0%");
 
